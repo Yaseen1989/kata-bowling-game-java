@@ -27,9 +27,13 @@ public class Bowling {
 
     private int bonusScore(String rolls, int numberOfRoll) {
         int bonus = 0;
-        if (rollScore(rolls, numberOfRoll) + rollScore(rolls, numberOfRoll + 1) == 10) {
+        if (isSpare(rolls, numberOfRoll)) {
             bonus = rollScore(rolls, numberOfRoll + 2);
         }
         return bonus;
+    }
+
+    private boolean isSpare(String rolls, int numberOfRoll) {
+        return rollScore(rolls, numberOfRoll) + rollScore(rolls, numberOfRoll + 1) == 10;
     }
 }
