@@ -58,6 +58,11 @@ public class BowlingShould {
         assertThat(scoreOf("XXXXXXXXXXXX"), is(300));
     }
 
+    @Test
+    public void scores_150_all_the_turns_with_spare_and_the_last_bonus_5() {
+        assertThat(scoreOf("5/5/5/5/5/5/5/5/5/5/5"), is(150));
+    }
+
     private int scoreOf(String rolls) {
         Bowling bowling = new Bowling();
         return bowling.scoreOf(rolls);
