@@ -3,9 +3,12 @@ package com.luisrovirosa.katas.bowling;
 public class Bowling {
     public int scoreOf(String rolls) {
         int result = 0;
-        for (int i = 0; i < rolls.length(); i++) {
-            result += rollScore(rolls, i);
-            result += bonusScore(rolls, i);
+        int numberOfRoll = 0;
+        for (int turn = 0; turn < 10; turn++) {
+            result += rollScore(rolls, numberOfRoll);
+            result += rollScore(rolls, numberOfRoll + 1);
+            result += bonusScore(rolls, numberOfRoll);
+            numberOfRoll += 10 == rollScore(rolls, numberOfRoll) ? 1 : 2;
         }
         return result;
     }
