@@ -23,6 +23,11 @@ public class BowlingShould {
         assertThat(scoreOf("2-------------------"), is(2));
     }
 
+    @Test
+    public void score_20_when_all_rolls_throw_one_pin(){
+        assertThat(scoreOf("11111111111111111111"), is(20));
+    }
+
     private int scoreOf(String rolls) {
         Bowling bowling = new Bowling();
         return bowling.scoreOf(rolls);
