@@ -33,6 +33,11 @@ public class BowlingShould {
         assertThat(scoreOf("3/------------------"), is(10));
     }
 
+    @Test
+    public void score_10_when_the_first_turn_do_a_strike_and_miss_other_rolls() {
+        assertThat(scoreOf("X------------------"), is(10));
+    }
+
     private int scoreOf(String rolls) {
         Bowling bowling = new Bowling();
         return bowling.scoreOf(rolls);
