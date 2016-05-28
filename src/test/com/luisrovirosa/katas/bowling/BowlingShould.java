@@ -38,6 +38,13 @@ public class BowlingShould {
         assertThat(scoreOf("X------------------"), is(10));
     }
 
+    @Test
+    public void get_next_throw_of_bonus_after_spare() {
+        assertThat(scoreOf("3/3-----------------"), is(16));
+    }
+
+
+
     private int scoreOf(String rolls) {
         Bowling bowling = new Bowling();
         return bowling.scoreOf(rolls);
