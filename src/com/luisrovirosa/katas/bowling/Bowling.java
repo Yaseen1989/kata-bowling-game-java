@@ -5,12 +5,17 @@ public class Bowling {
         int result = 0;
         int numberOfRoll = 0;
         for (int turn = 0; turn < 10; turn++) {
-            result += rollScore(rolls, numberOfRoll);
-            if (!isStrike(rolls, numberOfRoll)){
-                result += rollScore(rolls, numberOfRoll + 1);
-            }
+            result += basicScore(rolls, numberOfRoll);
             result += bonusScore(rolls, numberOfRoll);
             numberOfRoll += isStrike(rolls, numberOfRoll) ? 1 : 2;
+        }
+        return result;
+    }
+
+    private int basicScore(String rolls, int numberOfRoll) {
+        int result = rollScore(rolls, numberOfRoll);
+        if (!isStrike(rolls, numberOfRoll)){
+            result += rollScore(rolls, numberOfRoll + 1);
         }
         return result;
     }
