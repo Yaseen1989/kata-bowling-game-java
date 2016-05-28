@@ -43,6 +43,12 @@ public class BowlingShould {
         assertThat(scoreOf("3/3-----------------"), is(16));
     }
 
+    @Test
+    public void not_be_a_spare_the_score_of_10_in_two_consecutive_rolls_but_in_different_turns() {
+        assertThat(scoreOf("3553----------------"), is(16));
+    }
+
+
 
 
     private int scoreOf(String rolls) {

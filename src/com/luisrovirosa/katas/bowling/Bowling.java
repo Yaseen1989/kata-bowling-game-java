@@ -5,7 +5,7 @@ public class Bowling {
         int result = 0;
         for (int i = 0; i < rolls.length(); i++) {
             result += rollScore(rolls, i);
-            if (i < rolls.length() - 1 && rollScore(rolls, i) + rollScore(rolls, i + 1) == 10) {
+            if (i % 2 == 0 && i < rolls.length() - 1 && rollScore(rolls, i) + rollScore(rolls, i + 1) == 10) {
                 result += rollScore(rolls, i + 2);
             }
         }
