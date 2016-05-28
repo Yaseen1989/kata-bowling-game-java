@@ -6,9 +6,11 @@ public class Bowling {
         int numberOfRoll = 0;
         for (int turn = 0; turn < 10; turn++) {
             result += rollScore(rolls, numberOfRoll);
-            result += rollScore(rolls, numberOfRoll + 1);
+            if (!isStrike(rolls, numberOfRoll)){
+                result += rollScore(rolls, numberOfRoll + 1);
+            }
             result += bonusScore(rolls, numberOfRoll);
-            numberOfRoll += 10 == rollScore(rolls, numberOfRoll) ? 1 : 2;
+            numberOfRoll += isStrike(rolls, numberOfRoll) ? 1 : 2;
         }
         return result;
     }
@@ -27,10 +29,16 @@ public class Bowling {
 
     private int bonusScore(String rolls, int numberOfRoll) {
         int bonus = 0;
-        if (isSpare(rolls, numberOfRoll)) {
+        if (isStrike(rolls, numberOfRoll)){
+            bonus = rollScore(rolls, numberOfRoll + 1) + rollScore(rolls, numberOfRoll + 2);
+        } else if (isSpare(rolls, numberOfRoll)) {
             bonus = rollScore(rolls, numberOfRoll + 2);
         }
         return bonus;
+    }
+
+    private boolean isStrike(String rolls, int numberOfRoll) {
+        return 10 == rollScore(rolls, numberOfRoll);
     }
 
     private boolean isSpare(String rolls, int numberOfRoll) {
