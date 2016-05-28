@@ -27,7 +27,7 @@ public class Bowling {
 
     private int bonusScore(String rolls, int numberOfRoll) {
         int bonus = 0;
-        if (numberOfRoll % 2 == 0 && numberOfRoll < rolls.length() - 1 && rollScore(rolls, numberOfRoll) + rollScore(rolls, numberOfRoll + 1) == 10) {
+        if (rollScore(rolls, numberOfRoll) + rollScore(rolls, numberOfRoll + 1) == 10) {
             bonus = rollScore(rolls, numberOfRoll + 2);
         }
         return bonus;
