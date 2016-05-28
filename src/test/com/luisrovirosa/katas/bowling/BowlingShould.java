@@ -17,4 +17,13 @@ public class BowlingShould {
         assertThat(score, is(0));
     }
 
+    @Test
+    public void score_1_when_the_first_roll_throw_one_pin_and_miss_others_rolls(){
+        Bowling bowling = new Bowling();
+
+        int score = bowling.scoreOf("1-------------------");
+
+        assertThat(score, is(1));
+    }
+
 }
