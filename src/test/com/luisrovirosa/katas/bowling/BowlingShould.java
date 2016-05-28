@@ -48,9 +48,6 @@ public class BowlingShould {
         assertThat(scoreOf("3553----------------"), is(16));
     }
 
-
-
-
     private int scoreOf(String rolls) {
         Bowling bowling = new Bowling();
         return bowling.scoreOf(rolls);

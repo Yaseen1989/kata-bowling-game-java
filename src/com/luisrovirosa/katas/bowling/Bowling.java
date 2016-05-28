@@ -5,9 +5,7 @@ public class Bowling {
         int result = 0;
         for (int i = 0; i < rolls.length(); i++) {
             result += rollScore(rolls, i);
-            if (i % 2 == 0 && i < rolls.length() - 1 && rollScore(rolls, i) + rollScore(rolls, i + 1) == 10) {
-                result += rollScore(rolls, i + 2);
-            }
+            result += bonusScore(rolls, i);
         }
         return result;
     }
@@ -22,5 +20,13 @@ public class Bowling {
             score = "10";
         }
         return Integer.parseInt(score);
+    }
+
+    private int bonusScore(String rolls, int numberOfRoll) {
+        int bonus = 0;
+        if (numberOfRoll % 2 == 0 && numberOfRoll < rolls.length() - 1 && rollScore(rolls, numberOfRoll) + rollScore(rolls, numberOfRoll + 1) == 10) {
+            bonus = rollScore(rolls, numberOfRoll + 2);
+        }
+        return bonus;
     }
 }
