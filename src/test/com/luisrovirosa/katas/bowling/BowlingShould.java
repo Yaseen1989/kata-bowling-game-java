@@ -18,6 +18,11 @@ public class BowlingShould {
         assertThat(scoreOf("1-------------------"), is(1));
     }
 
+    @Test
+    public void score_2_when_the_first_roll_throw_two_pin_and_miss_others_rolls(){
+        assertThat(scoreOf("2-------------------"), is(2));
+    }
+
     private int scoreOf(String rolls) {
         Bowling bowling = new Bowling();
         return bowling.scoreOf(rolls);

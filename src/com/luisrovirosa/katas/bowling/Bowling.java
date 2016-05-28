@@ -2,9 +2,10 @@ package com.luisrovirosa.katas.bowling;
 
 public class Bowling {
     public int scoreOf(String rolls) {
-        if (rolls.substring(0,1).equals("-")){
-            return 0;
+        String score = rolls.substring(0, 1);
+        if (score.equals("-")){
+            score = "0";
         }
-        return 1;
+        return Integer.parseInt(score);
     }
 }
