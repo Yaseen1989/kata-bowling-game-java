@@ -47,21 +47,21 @@ public class Game {
 
     private ArrayList<Turn> turns(ArrayList<Roll> scores) {
         ArrayList<Turn> turns = new ArrayList<>();
-        int numberOfTurn = 0;
+        int numberOfRoll = 0;
         for (int i = 0; i < 10; i++) {
-            Roll roll = scores.get(numberOfTurn);
+            Roll roll = scores.get(numberOfRoll);
             if (roll.score() == 10) {
                 turns.add(new Strike(roll));
             } else {
-                turns.add(new Turn(roll, scores.get(numberOfTurn + 1)));
-                numberOfTurn++;
+                turns.add(new Turn(roll, scores.get(numberOfRoll + 1)));
+                numberOfRoll++;
             }
-            numberOfTurn++;
+            numberOfRoll++;
         }
-        if (numberOfTurn == scores.size() - 1) {
-            turns.add(new Turn(scores.get(numberOfTurn)));
-        } else if (numberOfTurn == scores.size() - 2) {
-            turns.add(new Turn(scores.get(numberOfTurn), scores.get(numberOfTurn + 1)));
+        if (numberOfRoll == scores.size() - 1) {
+            turns.add(new Turn(scores.get(numberOfRoll)));
+        } else if (numberOfRoll == scores.size() - 2) {
+            turns.add(new Turn(scores.get(numberOfRoll), scores.get(numberOfRoll + 1)));
         }
         return turns;
     }
