@@ -1,18 +1,16 @@
 package com.luisrovirosa.katas.bowling;
 
-import java.util.ArrayList;
-
 public class GameScorer {
-    private final ArrayList<Turn> turns;
+    private Game game;
 
-    public GameScorer(ArrayList<Turn> turns) {
-        this.turns = turns;
+    public GameScorer(Game game) {
+        this.game = game;
     }
 
     public int score() {
         int result = 0;
         for (int numberOfTurn = 0; numberOfTurn < 10; numberOfTurn++) {
-            Turn turn = turns.get(numberOfTurn);
+            Turn turn = game.turn(numberOfTurn);
             result += turnScore(turn);
         }
         return result;
@@ -28,21 +26,16 @@ public class GameScorer {
             return 0;
         }
 
-        Turn next = next(turn);
+        Turn next = game.next(turn);
         if (turn.isSpare()) {
             return next.firstRollScore();
         }
 
         if (next.isStrike()) {
-            return next.basicScore() + next(next).firstRollScore();
+            return next.basicScore() + game.next(next).firstRollScore();
         } else {
             return next.basicScore();
         }
-    }
-
-    private Turn next(Turn turn) {
-        int numberOfTurn = turns.indexOf(turn);
-        return turns.get(numberOfTurn + 1);
     }
 
 }

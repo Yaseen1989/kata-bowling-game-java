@@ -2,14 +2,14 @@ package com.luisrovirosa.katas.bowling;
 
 import java.util.ArrayList;
 
-public class TurnParser {
+public class GameParser {
 
     private static final int NUMBER_OF_TURNS = 10;
 
-    public ArrayList<Turn> parse(ArrayList<Roll> scores) {
+    public Game parse(ArrayList<Roll> scores) {
         ArrayList<Turn> turns = normalTurns(scores);
-        turns.add(bonusTurn(scores, turns));
-        return turns;
+        Turn bonusTurn = bonusTurn(scores, turns);
+        return new Game(turns, bonusTurn);
     }
 
     private ArrayList<Turn> normalTurns(ArrayList<Roll> scores) {

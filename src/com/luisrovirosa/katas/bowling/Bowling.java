@@ -5,17 +5,17 @@ import java.util.ArrayList;
 public class Bowling {
 
     private final RollParser rollParser;
-    private final TurnParser turnParser;
+    private final GameParser turnParser;
 
-    public Bowling(RollParser parser, TurnParser turnParser) {
+    public Bowling(RollParser parser, GameParser turnParser) {
         this.rollParser = parser;
         this.turnParser = turnParser;
     }
 
     public int scoreOf(String rollsAsString) {
         ArrayList<Roll> rolls = rollParser.parse(rollsAsString);
-        ArrayList<Turn> turns = turnParser.parse(rolls);
-        GameScorer scorer = new GameScorer(turns);
+        Game game = turnParser.parse(rolls);
+        GameScorer scorer = new GameScorer(game);
 
         return scorer.score();
     }
