@@ -24,18 +24,20 @@ public class Game {
     }
 
     private int bonusScore(Turn turn) {
-        int bonus = 0;
-        if (turn.isStrike()) {
-            Turn next = next(turn);
-            if (next.isStrike()) {
-                bonus = next.basicScore() + next(next).firstRoll().score();
-            } else {
-                bonus = next.basicScore();
-            }
-        } else if (turn.isSpare()) {
-            bonus = next(turn).firstRoll().score();
+        if (turn.basicScore() < 10) {
+            return 0;
         }
-        return bonus;
+
+        Turn next = next(turn);
+        if (turn.isSpare()) {
+            return next.firstRoll().score();
+        }
+
+        if (next.isStrike()) {
+            return next.basicScore() + next(next).firstRoll().score();
+        } else {
+            return next.basicScore();
+        }
     }
 
     private Turn next(Turn turn) {
