@@ -25,7 +25,7 @@ public class TurnParser {
 
     private Turn bonusTurn(ArrayList<Roll> scores, ArrayList<Turn> turns) {
         Turn lastTurn = lastTurn(turns);
-        if (!lastTurn.isStrike() && !lastTurn.isSpare()) {
+        if (!lastTurn.hasBonus()) {
             return new Turn(new Roll(0));
         }
 

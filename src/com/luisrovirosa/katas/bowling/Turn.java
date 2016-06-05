@@ -30,4 +30,7 @@ public class Turn {
         return firstRoll;
     }
 
+    public boolean hasBonus() {
+        return isStrike() || isSpare();
+    }
 }

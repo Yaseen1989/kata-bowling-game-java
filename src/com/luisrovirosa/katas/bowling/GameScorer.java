@@ -24,7 +24,7 @@ public class GameScorer {
     }
 
     private int bonusScore(Turn turn) {
-        if (!turn.isStrike() && !turn.isSpare()) {
+        if (!turn.hasBonus()) {
             return 0;
         }
 
