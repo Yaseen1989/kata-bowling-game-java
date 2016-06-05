@@ -46,22 +46,26 @@ public class Game {
     private void initializeTurns(ArrayList<Roll> scores) {
         int numberOfRoll = 0;
         for (int i = 0; i < 10; i++) {
-            Roll roll = scores.get(numberOfRoll);
-            if (roll.score() == 10) {
-                turns.add(new Strike(roll));
-            } else if (roll.score() + scores.get(numberOfRoll + 1).score() == 10) {
-                turns.add(new Spare(roll, scores.get(numberOfRoll + 1)));
-                numberOfRoll++;
-            } else {
-                turns.add(new Turn(roll, scores.get(numberOfRoll + 1)));
-                numberOfRoll++;
-            }
-            numberOfRoll++;
+            Turn turn = getTurn(scores, numberOfRoll);
+            turns.add(turn);
+            numberOfRoll += turn.isStrike() ? 1 : 2;
         }
         if (numberOfRoll == scores.size() - 1) {
             turns.add(new Turn(scores.get(numberOfRoll)));
         } else if (numberOfRoll == scores.size() - 2) {
             turns.add(new Turn(scores.get(numberOfRoll), scores.get(numberOfRoll + 1)));
         }
+    }
+
+    private Turn getTurn(ArrayList<Roll> scores, int numberOfRoll) {
+        Roll firstRoll = scores.get(numberOfRoll);
+        if (firstRoll.score() == 10) {
+            return new Strike(firstRoll);
+        }
+        Roll secondRoll = scores.get(numberOfRoll + 1);
+        if (firstRoll.score() + secondRoll.score() == 10) {
+            return new Spare(firstRoll, secondRoll);
+        }
+        return new Turn(firstRoll, secondRoll);
     }
 }
