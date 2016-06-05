@@ -1,10 +1,12 @@
 package com.luisrovirosa.katas.bowling;
 
+import java.util.ArrayList;
+
 public class RollParser {
-    public int[] parse(String rolls) {
-        int[] result = new int[rolls.length()];
+    public ArrayList<Roll> parse(String rolls) {
+        ArrayList<Roll> result = new ArrayList<>();
         for (int i = 0; i < rolls.length(); i++) {
-            result[i] = scoreOf(rolls, i);
+            result.add(new Roll(scoreOf(rolls, i)));
         }
         return result;
     }

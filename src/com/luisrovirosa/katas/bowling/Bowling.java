@@ -1,5 +1,7 @@
 package com.luisrovirosa.katas.bowling;
 
+import java.util.ArrayList;
+
 public class Bowling {
 
     private final RollParser parser;
@@ -9,7 +11,7 @@ public class Bowling {
     }
 
     public int scoreOf(String rolls) {
-        int[] scores = parser.parse(rolls);
+        ArrayList<Roll> scores = parser.parse(rolls);
         int result = 0;
         int numberOfRoll = 0;
         for (int turn = 0; turn < 10; turn++) {
@@ -19,33 +21,33 @@ public class Bowling {
         return result;
     }
 
-    private int turnScore(int[] rolls, int numberOfRoll) {
+    private int turnScore(ArrayList<Roll> rolls, int numberOfRoll) {
         return basicScore(rolls, numberOfRoll) + bonusScore(rolls, numberOfRoll);
     }
 
-    private int basicScore(int[] rolls, int numberOfRoll) {
-        int result = rolls[numberOfRoll];
+    private int basicScore(ArrayList<Roll> rolls, int numberOfRoll) {
+        int result = rolls.get(numberOfRoll).score();
         if (!isStrike(rolls, numberOfRoll)) {
-            result += rolls[numberOfRoll + 1];
+            result += rolls.get(numberOfRoll + 1).score();
         }
         return result;
     }
 
-    private int bonusScore(int[] rolls, int numberOfRoll) {
+    private int bonusScore(ArrayList<Roll> rolls, int numberOfRoll) {
         int bonus = 0;
         if (isStrike(rolls, numberOfRoll)) {
-            bonus = rolls[numberOfRoll + 1] + rolls[numberOfRoll + 2];
+            bonus = rolls.get(numberOfRoll + 1).score() + rolls.get(numberOfRoll + 2).score();
         } else if (isSpare(rolls, numberOfRoll)) {
-            bonus = rolls[numberOfRoll + 2];
+            bonus = rolls.get(numberOfRoll + 2).score();
         }
         return bonus;
     }
 
-    private boolean isStrike(int[] rolls, int numberOfRoll) {
-        return 10 == rolls[numberOfRoll];
+    private boolean isStrike(ArrayList<Roll> rolls, int numberOfRoll) {
+        return 10 == rolls.get(numberOfRoll).score();
     }
 
-    private boolean isSpare(int[] rolls, int numberOfRoll) {
-        return (rolls[numberOfRoll] + rolls[numberOfRoll + 1] == 10);
+    private boolean isSpare(ArrayList<Roll> rolls, int numberOfRoll) {
+        return (rolls.get(numberOfRoll).score() + rolls.get(numberOfRoll + 1).score() == 10);
     }
 }
