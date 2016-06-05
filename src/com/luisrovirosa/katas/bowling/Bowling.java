@@ -5,16 +5,16 @@ import java.util.ArrayList;
 public class Bowling {
 
     private final RollParser rollParser;
-    private final GameParser turnParser;
+    private final GameParser gameParser;
 
-    public Bowling(RollParser parser, GameParser turnParser) {
+    public Bowling(RollParser parser, GameParser gameParser) {
         this.rollParser = parser;
-        this.turnParser = turnParser;
+        this.gameParser = gameParser;
     }
 
     public int scoreOf(String rollsAsString) {
         ArrayList<Roll> rolls = rollParser.parse(rollsAsString);
-        Game game = turnParser.parse(rolls);
+        Game game = gameParser.parse(rolls);
         GameScorer scorer = new GameScorer(game);
 
         return scorer.score();
