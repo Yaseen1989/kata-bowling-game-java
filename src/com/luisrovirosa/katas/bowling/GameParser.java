@@ -8,7 +8,7 @@ public class GameParser {
 
     public Game parse(ArrayList<Roll> scores) {
         ArrayList<Turn> turns = normalTurns(scores);
-        Turn bonusTurn = bonusTurn(scores, turns);
+        Turn bonusTurn = bonusTurn(lastTurn(turns), scores);
         return new Game(turns, bonusTurn);
     }
 
@@ -16,15 +16,14 @@ public class GameParser {
         ArrayList<Turn> turns = new ArrayList<>();
         int numberOfRoll = 0;
         for (int i = 0; i < NUMBER_OF_TURNS; i++) {
-            Turn turn = getTurn(scores, numberOfRoll);
+            Turn turn = getTurn(numberOfRoll, scores);
             turns.add(turn);
             numberOfRoll += turn.isStrike() ? 1 : 2;
         }
         return turns;
     }
 
-    private Turn bonusTurn(ArrayList<Roll> scores, ArrayList<Turn> turns) {
-        Turn lastTurn = lastTurn(turns);
+    private Turn bonusTurn(Turn lastTurn, ArrayList<Roll> scores) {
         if (!lastTurn.hasBonus()) {
             return new Turn(new Roll(0));
         }
@@ -38,20 +37,20 @@ public class GameParser {
         return new Turn(penultimateRoll, lastRoll);
     }
 
-    private Turn lastTurn(ArrayList<Turn> turns) {
-        return turns.get(turns.size() - 1);
-    }
-
-    private Turn getTurn(ArrayList<Roll> scores, int numberOfRoll) {
-        Roll firstRoll = scores.get(numberOfRoll);
+    private Turn getTurn(int startingRoll, ArrayList<Roll> scores) {
+        Roll firstRoll = scores.get(startingRoll);
         if (firstRoll.score() == 10) {
             return new Strike(firstRoll);
         }
-        Roll secondRoll = scores.get(numberOfRoll + 1);
+        Roll secondRoll = scores.get(startingRoll + 1);
         if (firstRoll.score() + secondRoll.score() == 10) {
             return new Spare(firstRoll, secondRoll);
         }
         return new Turn(firstRoll, secondRoll);
+    }
+
+    private Turn lastTurn(ArrayList<Turn> turns) {
+        return turns.get(turns.size() - 1);
     }
 
 }
