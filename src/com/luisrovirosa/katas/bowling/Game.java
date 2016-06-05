@@ -3,38 +3,44 @@ package com.luisrovirosa.katas.bowling;
 import java.util.ArrayList;
 
 public class Game {
-    private ArrayList<Roll> scores;
     private final ArrayList<Turn> turns = new ArrayList<>();
 
     public Game(ArrayList<Roll> scores) {
-        this.scores = scores;
         initializeTurns(scores);
     }
 
     public int score() {
         int result = 0;
-        int numberOfRoll = 0;
         for (int numberOfTurn = 0; numberOfTurn < 10; numberOfTurn++) {
             Turn turn = turns.get(numberOfTurn);
-            result += turnScore(turn, numberOfRoll);
-            numberOfRoll += turn.isStrike() ? 1 : 2;
+            result += turnScore(turn);
         }
         return result;
 
     }
 
-    private int turnScore(Turn turn, int numberOfRoll) {
-        return turn.basicScore() + bonusScore(turn, numberOfRoll);
+    private int turnScore(Turn turn) {
+        return turn.basicScore() + bonusScore(turn);
     }
 
-    private int bonusScore(Turn turn, int numberOfRoll) {
+    private int bonusScore(Turn turn) {
         int bonus = 0;
         if (turn.isStrike()) {
-            bonus = scores.get(numberOfRoll + 1).score() + scores.get(numberOfRoll + 2).score();
+            Turn next = next(turn);
+            if (next.isStrike()) {
+                bonus = next.basicScore() + next(next).firstRoll().score();
+            } else {
+                bonus = next.basicScore();
+            }
         } else if (turn.isSpare()) {
-            bonus = scores.get(numberOfRoll + 2).score();
+            bonus = next(turn).firstRoll().score();
         }
         return bonus;
+    }
+
+    private Turn next(Turn turn) {
+        int numberOfTurn = turns.indexOf(turn);
+        return turns.get(numberOfTurn + 1);
     }
 
     private void initializeTurns(ArrayList<Roll> scores) {

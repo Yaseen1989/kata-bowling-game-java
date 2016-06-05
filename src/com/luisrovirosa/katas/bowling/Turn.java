@@ -25,4 +25,12 @@ public class Turn {
     public boolean isSpare() {
             return false;
     }
+
+    public Roll firstRoll() {
+        return firstRoll;
+    }
+
+    public Roll secondRoll() {
+        return secondRoll;
+    }
 }
