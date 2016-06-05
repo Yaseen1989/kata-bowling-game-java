@@ -1,8 +1,14 @@
 package com.luisrovirosa.katas.bowling;
 
 public class Bowling {
+
+    private final RollParser parser;
+
+    public Bowling(RollParser parser) {
+        this.parser = parser;
+    }
+
     public int scoreOf(String rolls) {
-        RollParser parser = new RollParser();
         int[] scores = parser.parse(rolls);
         int result = 0;
         int numberOfRoll = 0;

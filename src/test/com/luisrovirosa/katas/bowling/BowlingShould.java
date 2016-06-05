@@ -1,6 +1,7 @@
 package test.com.luisrovirosa.katas.bowling;
 
 import com.luisrovirosa.katas.bowling.Bowling;
+import com.luisrovirosa.katas.bowling.RollParser;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -64,7 +65,7 @@ public class BowlingShould {
     }
 
     private int scoreOf(String rolls) {
-        Bowling bowling = new Bowling();
+        Bowling bowling = new Bowling(new RollParser());
         return bowling.scoreOf(rolls);
     }
 
