@@ -30,11 +30,11 @@ public class GameScorer {
 
         Turn next = next(turn);
         if (turn.isSpare()) {
-            return next.firstRoll().score();
+            return next.firstRollScore();
         }
 
         if (next.isStrike()) {
-            return next.basicScore() + next(next).firstRoll().score();
+            return next.basicScore() + next(next).firstRollScore();
         } else {
             return next.basicScore();
         }

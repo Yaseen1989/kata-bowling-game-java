@@ -18,16 +18,16 @@ public class Turn {
         return firstRoll.score() + secondRoll.score();
     }
 
+    public int firstRollScore() {
+        return firstRoll.score();
+    }
+
     public boolean isStrike() {
         return false;
     }
 
     public boolean isSpare() {
         return false;
-    }
-
-    public Roll firstRoll() {
-        return firstRoll;
     }
 
     public boolean hasBonus() {
