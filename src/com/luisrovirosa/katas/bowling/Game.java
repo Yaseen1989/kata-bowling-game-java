@@ -17,7 +17,7 @@ public class Game {
         for (int numberOfTurn = 0; numberOfTurn < 10; numberOfTurn++) {
             Turn turn = turns.get(numberOfTurn);
             result += turnScore(turn, numberOfRoll);
-            numberOfRoll += isStrike(turn, numberOfRoll) ? 1 : 2;
+            numberOfRoll += turn.isStrike() ? 1 : 2;
         }
         return result;
 
@@ -29,16 +29,12 @@ public class Game {
 
     private int bonusScore(Turn turn, int numberOfRoll) {
         int bonus = 0;
-        if (isStrike(turn, numberOfRoll)) {
+        if (turn.isStrike()) {
             bonus = scores.get(numberOfRoll + 1).score() + scores.get(numberOfRoll + 2).score();
         } else if (isSpare(numberOfRoll)) {
             bonus = scores.get(numberOfRoll + 2).score();
         }
         return bonus;
-    }
-
-    private boolean isStrike(Turn turn, int numberOfRoll) {
-        return 10 == scores.get(numberOfRoll).score();
     }
 
     private boolean isSpare(int numberOfRoll) {
@@ -51,10 +47,10 @@ public class Game {
             Roll roll = scores.get(numberOfRoll);
             if (roll.score() == 10) {
                 turns.add(new Strike(roll));
-            } else if (roll.score() + scores.get(numberOfRoll+1).score() == 10) {
+            } else if (roll.score() + scores.get(numberOfRoll + 1).score() == 10) {
                 turns.add(new Spare(roll, scores.get(numberOfRoll + 1)));
                 numberOfRoll++;
-            }else {
+            } else {
                 turns.add(new Turn(roll, scores.get(numberOfRoll + 1)));
                 numberOfRoll++;
             }

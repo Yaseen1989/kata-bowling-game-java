@@ -17,4 +17,8 @@ public class Turn {
     public int basicScore() {
         return firstRoll.score() + secondRoll.score();
     }
+
+    public boolean isStrike() {
+        return false;
+    }
 }
