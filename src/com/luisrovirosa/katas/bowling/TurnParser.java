@@ -7,17 +7,24 @@ public class TurnParser {
     public ArrayList<Turn> parse(ArrayList<Roll> scores) {
         ArrayList<Turn> turns = new ArrayList<>();
         int numberOfRoll = 0;
+        Turn turn = null;
         for (int i = 0; i < 10; i++) {
-            Turn turn = getTurn(scores, numberOfRoll);
+            turn = getTurn(scores, numberOfRoll);
             turns.add(turn);
             numberOfRoll += turn.isStrike() ? 1 : 2;
         }
-        if (numberOfRoll == scores.size() - 1) {
-            turns.add(new Turn(scores.get(numberOfRoll)));
-        } else if (numberOfRoll == scores.size() - 2) {
-            turns.add(new Turn(scores.get(numberOfRoll), scores.get(numberOfRoll + 1)));
-        }
+        turns.add(bonus(scores, numberOfRoll, turn));
         return turns;
+    }
+
+    private Turn bonus(ArrayList<Roll> scores, int numberOfRoll, Turn turn) {
+        if (turn.isStrike()){
+            return new Turn(scores.get(numberOfRoll), scores.get(numberOfRoll + 1));
+        }
+        if (turn.isSpare()) {
+            return new Turn(scores.get(numberOfRoll));
+        }
+        return new Turn(new Roll(0));
     }
 
     private Turn getTurn(ArrayList<Roll> scores, int numberOfRoll) {
