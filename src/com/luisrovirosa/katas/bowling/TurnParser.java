@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class TurnParser {
 
+    private static final int NUMBER_OF_TURNS = 10;
+
     public ArrayList<Turn> parse(ArrayList<Roll> scores) {
         ArrayList<Turn> turns = normalTurns(scores);
         turns.add(bonusTurn(scores, turns));
@@ -13,7 +15,7 @@ public class TurnParser {
     private ArrayList<Turn> normalTurns(ArrayList<Roll> scores) {
         ArrayList<Turn> turns = new ArrayList<>();
         int numberOfRoll = 0;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < NUMBER_OF_TURNS; i++) {
             Turn turn = getTurn(scores, numberOfRoll);
             turns.add(turn);
             numberOfRoll += turn.isStrike() ? 1 : 2;
@@ -22,14 +24,19 @@ public class TurnParser {
     }
 
     private Turn bonusTurn(ArrayList<Roll> scores, ArrayList<Turn> turns) {
-        Turn lastTurn = turns.get(turns.size() - 1);
-        if (lastTurn.isStrike()){
-            return new Turn(scores.get(scores.size()-2), scores.get(scores.size()-1));
+        Roll lastRoll = scores.get(scores.size() - 1);
+        if (lastTurn(turns).isStrike()){
+            Roll penultimateRoll = scores.get(scores.size() - 2);
+            return new Turn(penultimateRoll, lastRoll);
         }
-        if (lastTurn.isSpare()) {
-            return new Turn(scores.get(scores.size()-1));
+        if (lastTurn(turns).isSpare()) {
+            return new Turn(lastRoll);
         }
         return new Turn(new Roll(0));
+    }
+
+    private Turn lastTurn(ArrayList<Turn> turns) {
+        return turns.get(turns.size() - 1);
     }
 
     private Turn getTurn(ArrayList<Roll> scores, int numberOfRoll) {
