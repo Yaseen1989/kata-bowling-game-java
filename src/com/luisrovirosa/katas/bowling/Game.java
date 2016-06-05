@@ -1,6 +1,7 @@
 package com.luisrovirosa.katas.bowling;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Game {
     private ArrayList<Turn> turns;
@@ -11,8 +12,8 @@ public class Game {
         this.bonusTurn = bonusTurn;
     }
 
-    public Turn turn(int numberOfTurn) {
-        return turns.get(numberOfTurn);
+    public Collection<Turn> turns() {
+        return turns;
     }
 
     public Turn next(Turn turn) {

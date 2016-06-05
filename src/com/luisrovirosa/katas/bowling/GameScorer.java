@@ -9,8 +9,7 @@ public class GameScorer {
 
     public int score() {
         int result = 0;
-        for (int numberOfTurn = 0; numberOfTurn < 10; numberOfTurn++) {
-            Turn turn = game.turn(numberOfTurn);
+        for (Turn turn : game.turns()) {
             result += turnScore(turn);
         }
         return result;
