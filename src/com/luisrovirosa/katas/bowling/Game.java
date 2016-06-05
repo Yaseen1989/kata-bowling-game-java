@@ -3,10 +3,11 @@ package com.luisrovirosa.katas.bowling;
 import java.util.ArrayList;
 
 public class Game {
-    private final ArrayList<Turn> turns = new ArrayList<>();
+    private final ArrayList<Turn> turns;
 
     public Game(ArrayList<Roll> scores) {
-        initializeTurns(scores);
+        TurnParser parser = new TurnParser();
+        turns = parser.parse(scores);
     }
 
     public int score() {
@@ -43,29 +44,4 @@ public class Game {
         return turns.get(numberOfTurn + 1);
     }
 
-    private void initializeTurns(ArrayList<Roll> scores) {
-        int numberOfRoll = 0;
-        for (int i = 0; i < 10; i++) {
-            Turn turn = getTurn(scores, numberOfRoll);
-            turns.add(turn);
-            numberOfRoll += turn.isStrike() ? 1 : 2;
-        }
-        if (numberOfRoll == scores.size() - 1) {
-            turns.add(new Turn(scores.get(numberOfRoll)));
-        } else if (numberOfRoll == scores.size() - 2) {
-            turns.add(new Turn(scores.get(numberOfRoll), scores.get(numberOfRoll + 1)));
-        }
-    }
-
-    private Turn getTurn(ArrayList<Roll> scores, int numberOfRoll) {
-        Roll firstRoll = scores.get(numberOfRoll);
-        if (firstRoll.score() == 10) {
-            return new Strike(firstRoll);
-        }
-        Roll secondRoll = scores.get(numberOfRoll + 1);
-        if (firstRoll.score() + secondRoll.score() == 10) {
-            return new Spare(firstRoll, secondRoll);
-        }
-        return new Turn(firstRoll, secondRoll);
-    }
 }
