@@ -13,40 +13,40 @@ public class Game {
         int result = 0;
         int numberOfRoll = 0;
         for (int turn = 0; turn < 10; turn++) {
-            result += turnScore(scores, numberOfRoll);
-            numberOfRoll += isStrike(scores, numberOfRoll) ? 1 : 2;
+            result += turnScore(numberOfRoll);
+            numberOfRoll += isStrike(numberOfRoll) ? 1 : 2;
         }
         return result;
 
     }
 
-    private int turnScore(ArrayList<Roll> rolls, int numberOfRoll) {
-        return basicScore(rolls, numberOfRoll) + bonusScore(rolls, numberOfRoll);
+    private int turnScore(int numberOfRoll) {
+        return basicScore(numberOfRoll) + bonusScore(numberOfRoll);
     }
 
-    private int basicScore(ArrayList<Roll> rolls, int numberOfRoll) {
-        int result = rolls.get(numberOfRoll).score();
-        if (!isStrike(rolls, numberOfRoll)) {
-            result += rolls.get(numberOfRoll + 1).score();
+    private int basicScore(int numberOfRoll) {
+        int result = scores.get(numberOfRoll).score();
+        if (!isStrike(numberOfRoll)) {
+            result += scores.get(numberOfRoll + 1).score();
         }
         return result;
     }
 
-    private int bonusScore(ArrayList<Roll> rolls, int numberOfRoll) {
+    private int bonusScore(int numberOfRoll) {
         int bonus = 0;
-        if (isStrike(rolls, numberOfRoll)) {
-            bonus = rolls.get(numberOfRoll + 1).score() + rolls.get(numberOfRoll + 2).score();
-        } else if (isSpare(rolls, numberOfRoll)) {
-            bonus = rolls.get(numberOfRoll + 2).score();
+        if (isStrike(numberOfRoll)) {
+            bonus = scores.get(numberOfRoll + 1).score() + scores.get(numberOfRoll + 2).score();
+        } else if (isSpare(numberOfRoll)) {
+            bonus = scores.get(numberOfRoll + 2).score();
         }
         return bonus;
     }
 
-    private boolean isStrike(ArrayList<Roll> rolls, int numberOfRoll) {
-        return 10 == rolls.get(numberOfRoll).score();
+    private boolean isStrike(int numberOfRoll) {
+        return 10 == scores.get(numberOfRoll).score();
     }
 
-    private boolean isSpare(ArrayList<Roll> rolls, int numberOfRoll) {
-        return (rolls.get(numberOfRoll).score() + rolls.get(numberOfRoll + 1).score() == 10);
+    private boolean isSpare(int numberOfRoll) {
+        return (scores.get(numberOfRoll).score() + scores.get(numberOfRoll + 1).score() == 10);
     }
 }
