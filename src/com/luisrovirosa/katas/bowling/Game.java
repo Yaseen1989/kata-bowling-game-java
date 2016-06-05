@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Game {
     private ArrayList<Roll> scores;
-    private final ArrayList<Turn> turns;
+    private final ArrayList<Turn> turns = new ArrayList<>();
 
     public Game(ArrayList<Roll> scores) {
         this.scores = scores;
-        turns = turns(scores);
+        initializeTurns(scores);
     }
 
     public int score() {
@@ -45,8 +45,7 @@ public class Game {
         return (scores.get(numberOfRoll).score() + scores.get(numberOfRoll + 1).score() == 10);
     }
 
-    private ArrayList<Turn> turns(ArrayList<Roll> scores) {
-        ArrayList<Turn> turns = new ArrayList<>();
+    private void initializeTurns(ArrayList<Roll> scores) {
         int numberOfRoll = 0;
         for (int i = 0; i < 10; i++) {
             Roll roll = scores.get(numberOfRoll);
@@ -63,6 +62,5 @@ public class Game {
         } else if (numberOfRoll == scores.size() - 2) {
             turns.add(new Turn(scores.get(numberOfRoll), scores.get(numberOfRoll + 1)));
         }
-        return turns;
     }
 }
