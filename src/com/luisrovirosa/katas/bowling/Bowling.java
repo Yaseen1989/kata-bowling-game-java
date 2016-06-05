@@ -1,7 +1,5 @@
 package com.luisrovirosa.katas.bowling;
 
-import java.util.ArrayList;
-
 public class Bowling {
 
     private final RollParser parser;
@@ -11,8 +9,8 @@ public class Bowling {
     }
 
     public int scoreOf(String rolls) {
-        ArrayList<Roll> scores = parser.parse(rolls);
-        Game game = new Game(scores);
+        Game game = new Game(parser.parse(rolls));
+
         return game.score();
     }
 
