@@ -1,15 +1,21 @@
 package com.luisrovirosa.katas.bowling;
 
+import java.util.ArrayList;
+
 public class Bowling {
 
-    private final RollParser parser;
+    private final RollParser rollParser;
+    private final TurnParser turnParser;
 
-    public Bowling(RollParser parser) {
-        this.parser = parser;
+    public Bowling(RollParser parser, TurnParser turnParser) {
+        this.rollParser = parser;
+        this.turnParser = turnParser;
     }
 
-    public int scoreOf(String rolls) {
-        Game game = new Game(parser.parse(rolls));
+    public int scoreOf(String rollsAsString) {
+        ArrayList<Roll> rolls = rollParser.parse(rollsAsString);
+        ArrayList<Turn> turns = turnParser.parse(rolls);
+        Game game = new Game(turns);
 
         return game.score();
     }

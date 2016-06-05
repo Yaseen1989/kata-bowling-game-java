@@ -5,9 +5,8 @@ import java.util.ArrayList;
 public class Game {
     private final ArrayList<Turn> turns;
 
-    public Game(ArrayList<Roll> scores) {
-        TurnParser parser = new TurnParser();
-        turns = parser.parse(scores);
+    public Game(ArrayList<Turn> turns) {
+        this.turns = turns;
     }
 
     public int score() {
