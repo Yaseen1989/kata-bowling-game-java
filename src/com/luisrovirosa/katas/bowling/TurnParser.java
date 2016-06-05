@@ -24,15 +24,18 @@ public class TurnParser {
     }
 
     private Turn bonusTurn(ArrayList<Roll> scores, ArrayList<Turn> turns) {
-        Roll lastRoll = scores.get(scores.size() - 1);
-        if (lastTurn(turns).isStrike()){
-            Roll penultimateRoll = scores.get(scores.size() - 2);
-            return new Turn(penultimateRoll, lastRoll);
+        Turn lastTurn = lastTurn(turns);
+        if (!lastTurn.isStrike() && !lastTurn.isSpare()) {
+            return new Turn(new Roll(0));
         }
-        if (lastTurn(turns).isSpare()) {
+
+        Roll lastRoll = scores.get(scores.size() - 1);
+        if (lastTurn.isSpare()) {
             return new Turn(lastRoll);
         }
-        return new Turn(new Roll(0));
+
+        Roll penultimateRoll = scores.get(scores.size() - 2);
+        return new Turn(penultimateRoll, lastRoll);
     }
 
     private Turn lastTurn(ArrayList<Turn> turns) {
