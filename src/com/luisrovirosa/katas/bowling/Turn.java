@@ -21,4 +21,8 @@ public class Turn {
     public boolean isStrike() {
         return false;
     }
+
+    public boolean isSpare() {
+            return false;
+    }
 }

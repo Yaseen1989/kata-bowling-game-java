@@ -31,14 +31,10 @@ public class Game {
         int bonus = 0;
         if (turn.isStrike()) {
             bonus = scores.get(numberOfRoll + 1).score() + scores.get(numberOfRoll + 2).score();
-        } else if (isSpare(numberOfRoll)) {
+        } else if (turn.isSpare()) {
             bonus = scores.get(numberOfRoll + 2).score();
         }
         return bonus;
-    }
-
-    private boolean isSpare(int numberOfRoll) {
-        return (scores.get(numberOfRoll).score() + scores.get(numberOfRoll + 1).score() == 10);
     }
 
     private void initializeTurns(ArrayList<Roll> scores) {

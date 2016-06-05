@@ -4,4 +4,9 @@ public class Spare extends Turn {
     public Spare(Roll firstRoll, Roll secondRoll) {
         super(firstRoll, secondRoll);
     }
+
+    @Override
+    public boolean isSpare() {
+        return true;
+    }
 }
