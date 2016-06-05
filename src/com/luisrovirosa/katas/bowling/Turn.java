@@ -4,7 +4,7 @@ public class Turn {
     private Roll firstRoll;
     private Roll secondRoll;
 
-    public Turn(Roll roll) {
+    protected Turn(Roll roll) {
         firstRoll = roll;
         secondRoll = new Roll(0);
     }

@@ -51,7 +51,7 @@ public class Game {
         for (int i = 0; i < 10; i++) {
             Roll roll = scores.get(numberOfTurn);
             if (roll.score() == 10) {
-                turns.add(new Turn(roll));
+                turns.add(new Strike(roll));
             } else {
                 turns.add(new Turn(roll, scores.get(numberOfTurn + 1)));
                 numberOfTurn++;
