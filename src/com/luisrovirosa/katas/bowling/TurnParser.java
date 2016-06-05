@@ -13,16 +13,16 @@ public class TurnParser {
             turns.add(turn);
             numberOfRoll += turn.isStrike() ? 1 : 2;
         }
-        turns.add(bonus(scores, numberOfRoll, turn));
+        turns.add(bonus(turn, scores));
         return turns;
     }
 
-    private Turn bonus(ArrayList<Roll> scores, int numberOfRoll, Turn turn) {
-        if (turn.isStrike()){
-            return new Turn(scores.get(numberOfRoll), scores.get(numberOfRoll + 1));
+    private Turn bonus(Turn lastTurn, ArrayList<Roll> scores) {
+        if (lastTurn.isStrike()){
+            return new Turn(scores.get(scores.size()-2), scores.get(scores.size()-1));
         }
-        if (turn.isSpare()) {
-            return new Turn(scores.get(numberOfRoll));
+        if (lastTurn.isSpare()) {
+            return new Turn(scores.get(scores.size()-1));
         }
         return new Turn(new Roll(0));
     }
