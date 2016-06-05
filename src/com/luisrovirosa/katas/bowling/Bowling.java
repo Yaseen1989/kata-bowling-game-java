@@ -15,9 +15,9 @@ public class Bowling {
     public int scoreOf(String rollsAsString) {
         ArrayList<Roll> rolls = rollParser.parse(rollsAsString);
         ArrayList<Turn> turns = turnParser.parse(rolls);
-        Game game = new Game(turns);
+        GameScorer scorer = new GameScorer(turns);
 
-        return game.score();
+        return scorer.score();
     }
 
 }

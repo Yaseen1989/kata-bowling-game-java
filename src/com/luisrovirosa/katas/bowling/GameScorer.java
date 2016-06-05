@@ -2,10 +2,10 @@ package com.luisrovirosa.katas.bowling;
 
 import java.util.ArrayList;
 
-public class Game {
+public class GameScorer {
     private final ArrayList<Turn> turns;
 
-    public Game(ArrayList<Turn> turns) {
+    public GameScorer(ArrayList<Turn> turns) {
         this.turns = turns;
     }
 
