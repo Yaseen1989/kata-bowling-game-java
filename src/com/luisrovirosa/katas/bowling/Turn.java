@@ -1,6 +1,7 @@
 package com.luisrovirosa.katas.bowling;
 
 public class Turn {
+    private static final int NUMBER_OF_PINS = 10;
     private Roll firstRoll;
     private Roll secondRoll;
 
@@ -30,7 +31,7 @@ public class Turn {
         return false;
     }
 
-    public boolean hasBonus() {
-        return isStrike() || isSpare();
+    public boolean hasKnockAllThePins() {
+        return basicScore() == NUMBER_OF_PINS;
     }
 }

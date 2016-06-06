@@ -21,7 +21,7 @@ public class GameScorer {
     }
 
     private int bonusScore(Turn turn) {
-        if (!turn.hasBonus()) {
+        if (!turn.hasKnockAllThePins()) {
             return 0;
         }
 

@@ -24,7 +24,7 @@ public class GameParser {
     }
 
     private Turn bonusTurn(Turn lastTurn, ArrayList<Roll> scores) {
-        if (!lastTurn.hasBonus()) {
+        if (!lastTurn.hasKnockAllThePins()) {
             return new Turn(new Roll(0));
         }
 
