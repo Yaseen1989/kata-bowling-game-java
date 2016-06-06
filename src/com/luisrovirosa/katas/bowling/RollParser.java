@@ -3,10 +3,10 @@ package com.luisrovirosa.katas.bowling;
 import java.util.ArrayList;
 
 public class RollParser {
-    public ArrayList<Roll> parse(String rolls) {
-        ArrayList<Roll> result = new ArrayList<>();
+    public ArrayList<NormalRoll> parse(String rolls) {
+        ArrayList<NormalRoll> result = new ArrayList<>();
         for (int i = 0; i < rolls.length(); i++) {
-            result.add(new Roll(scoreOf(rolls, i)));
+            result.add(new NormalRoll(scoreOf(rolls, i)));
         }
         return result;
     }

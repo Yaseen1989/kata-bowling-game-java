@@ -2,7 +2,7 @@ package com.luisrovirosa.katas.bowling;
 
 public class Strike extends Turn {
 
-    public Strike(Roll roll) {
+    public Strike(NormalRoll roll) {
         super(roll);
     }
 

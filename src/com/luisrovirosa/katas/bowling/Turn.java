@@ -2,25 +2,25 @@ package com.luisrovirosa.katas.bowling;
 
 public class Turn {
     private static final int NUMBER_OF_PINS = 10;
-    private Roll firstRoll;
-    private Roll secondRoll;
+    private NormalRoll firstRoll;
+    private NormalRoll secondRoll;
 
-    protected Turn(Roll roll) {
+    protected Turn(NormalRoll roll) {
         firstRoll = roll;
-        secondRoll = new Roll(0);
+        secondRoll = new NormalRoll(0);
     }
 
-    public Turn(Roll firstRoll, Roll secondRoll) {
+    public Turn(NormalRoll firstRoll, NormalRoll secondRoll) {
         this.firstRoll = firstRoll;
         this.secondRoll = secondRoll;
     }
 
     public int basicScore() {
-        return firstRoll.score() + secondRoll.score();
+        return firstRoll.numberOfKnockedPins() + secondRoll.numberOfKnockedPins();
     }
 
     public int firstRollScore() {
-        return firstRoll.score();
+        return firstRoll.numberOfKnockedPins();
     }
 
     public boolean isStrike() {

@@ -6,13 +6,13 @@ public class GameParser {
 
     private static final int NUMBER_OF_TURNS = 10;
 
-    public Game parse(ArrayList<Roll> scores) {
+    public Game parse(ArrayList<NormalRoll> scores) {
         ArrayList<Turn> turns = normalTurns(scores);
         Turn bonusTurn = bonusTurn(lastTurn(turns), scores);
         return new Game(turns, bonusTurn);
     }
 
-    private ArrayList<Turn> normalTurns(ArrayList<Roll> scores) {
+    private ArrayList<Turn> normalTurns(ArrayList<NormalRoll> scores) {
         ArrayList<Turn> turns = new ArrayList<>();
         int numberOfRoll = 0;
         for (int i = 0; i < NUMBER_OF_TURNS; i++) {
@@ -23,27 +23,27 @@ public class GameParser {
         return turns;
     }
 
-    private Turn bonusTurn(Turn lastTurn, ArrayList<Roll> scores) {
+    private Turn bonusTurn(Turn lastTurn, ArrayList<NormalRoll> scores) {
         if (!lastTurn.hasKnockAllThePins()) {
-            return new Turn(new Roll(0));
+            return new Turn(new NormalRoll(0));
         }
 
-        Roll lastRoll = scores.get(scores.size() - 1);
+        NormalRoll lastRoll = scores.get(scores.size() - 1);
         if (lastTurn.isSpare()) {
             return new Turn(lastRoll);
         }
 
-        Roll penultimateRoll = scores.get(scores.size() - 2);
+        NormalRoll penultimateRoll = scores.get(scores.size() - 2);
         return new Turn(penultimateRoll, lastRoll);
     }
 
-    private Turn getTurn(int startingRoll, ArrayList<Roll> scores) {
-        Roll firstRoll = scores.get(startingRoll);
-        if (firstRoll.score() == 10) {
+    private Turn getTurn(int startingRoll, ArrayList<NormalRoll> scores) {
+        NormalRoll firstRoll = scores.get(startingRoll);
+        if (firstRoll.numberOfKnockedPins() == 10) {
             return new Strike(firstRoll);
         }
-        Roll secondRoll = scores.get(startingRoll + 1);
-        if (firstRoll.score() + secondRoll.score() == 10) {
+        NormalRoll secondRoll = scores.get(startingRoll + 1);
+        if (firstRoll.numberOfKnockedPins() + secondRoll.numberOfKnockedPins() == 10) {
             return new Spare(firstRoll, secondRoll);
         }
         return new Turn(firstRoll, secondRoll);
