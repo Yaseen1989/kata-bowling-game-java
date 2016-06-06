@@ -2,15 +2,15 @@ package com.luisrovirosa.katas.bowling;
 
 public class Turn {
     private static final int NUMBER_OF_PINS = 10;
-    private NormalRoll firstRoll;
-    private NormalRoll secondRoll;
+    private Roll firstRoll;
+    private Roll secondRoll;
 
-    protected Turn(NormalRoll roll) {
+    protected Turn(Roll roll) {
         firstRoll = roll;
         secondRoll = new NormalRoll(0);
     }
 
-    public Turn(NormalRoll firstRoll, NormalRoll secondRoll) {
+    public Turn(Roll firstRoll, Roll secondRoll) {
         this.firstRoll = firstRoll;
         this.secondRoll = secondRoll;
     }
