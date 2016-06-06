@@ -8,9 +8,12 @@ public class Frame {
     private Roll firstRoll;
     private Roll secondRoll;
 
-    public Frame(Roll roll) {
-        firstRoll = roll;
-        secondRoll = new MissRoll();
+    protected Frame(){
+        this(new MissRoll());
+    }
+
+    protected Frame(Roll roll) {
+        this(roll, new MissRoll());
     }
 
     public Frame(Roll firstRoll, Roll secondRoll) {

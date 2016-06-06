@@ -4,6 +4,11 @@ import com.luisrovirosa.katas.bowling.frame.Frame;
 import com.luisrovirosa.katas.bowling.roll.Roll;
 
 public class BonusFrame extends Frame {
+
+    protected BonusFrame() {
+        super();
+    }
+
     public BonusFrame(Roll roll) {
         super(roll);
     }

@@ -13,16 +13,15 @@ public class Bowling {
     private final RollParser rollParser;
     private final FrameParser frameParser;
 
-    public Bowling(RollParser parser, FrameParser frameParser) {
+    public Bowling(RollParser parser) {
         this.rollParser = parser;
-        this.frameParser = frameParser;
+        this.frameParser = new FrameParser();
     }
 
     public int scoreOf(String rollsAsString) {
         ArrayList<Roll> rolls = rollParser.parse(rollsAsString);
         ArrayList<Frame> frames = frameParser.parse(rolls);
-        Line line = new Line(frames);
-        LineScorer scorer = new LineScorer(line);
+        LineScorer scorer = new LineScorer(new Line(frames));
 
         return scorer.score();
     }
