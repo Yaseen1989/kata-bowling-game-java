@@ -15,11 +15,11 @@ public class Turn {
         this.secondRoll = secondRoll;
     }
 
-    public int basicScore() {
+    public int numberOfKnockedPins() {
         return firstRoll.numberOfKnockedPins() + secondRoll.numberOfKnockedPins();
     }
 
-    public int firstRollScore() {
+    public int numberOfPinsKnockedInFirstRoll() {
         return firstRoll.numberOfKnockedPins();
     }
 
@@ -32,6 +32,6 @@ public class Turn {
     }
 
     public boolean hasKnockAllThePins() {
-        return basicScore() == NUMBER_OF_PINS;
+        return numberOfKnockedPins() == NUMBER_OF_PINS;
     }
 }

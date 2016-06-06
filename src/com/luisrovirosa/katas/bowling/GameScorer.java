@@ -17,7 +17,7 @@ public class GameScorer {
     }
 
     private int turnScore(Turn turn) {
-        return turn.basicScore() + bonusScore(turn);
+        return turn.numberOfKnockedPins() + bonusScore(turn);
     }
 
     private int bonusScore(Turn turn) {
@@ -27,13 +27,13 @@ public class GameScorer {
 
         Turn next = game.next(turn);
         if (turn.isSpare()) {
-            return next.firstRollScore();
+            return next.numberOfPinsKnockedInFirstRoll();
         }
 
         if (next.isStrike()) {
-            return next.basicScore() + game.next(next).firstRollScore();
+            return next.numberOfKnockedPins() + game.next(next).numberOfPinsKnockedInFirstRoll();
         } else {
-            return next.basicScore();
+            return next.numberOfKnockedPins();
         }
     }
 
