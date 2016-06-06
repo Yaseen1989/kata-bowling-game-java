@@ -12,20 +12,20 @@ public class RollParser {
     }
 
     private Roll createRoll(String rolls, int i) {
-        int score = scoreOf(rolls, i);
-        if (score == 0){
+        int score = scoreOf(i, rolls);
+        if (score == 0) {
             return new MissRoll();
         }
         return new NormalRoll(score);
     }
 
-    private int scoreOf(String rolls, int numberOfRoll) {
+    private int scoreOf(int numberOfRoll, String rolls) {
         char score = rolls.charAt(numberOfRoll);
         if (score == '-') {
             return 0;
         }
         if (score == '/') {
-            return 10 - scoreOf(rolls, numberOfRoll - 1);
+            return 10 - scoreOf(numberOfRoll - 1, rolls);
         }
         if (score == 'X') {
             return 10;
