@@ -7,7 +7,7 @@ public class Turn {
 
     protected Turn(Roll roll) {
         firstRoll = roll;
-        secondRoll = new NormalRoll(0);
+        secondRoll = new MissRoll();
     }
 
     public Turn(Roll firstRoll, Roll secondRoll) {
