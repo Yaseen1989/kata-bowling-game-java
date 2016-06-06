@@ -24,17 +24,13 @@ public class GameParser {
     }
 
     private Turn bonusTurn(Turn lastTurn, ArrayList<Roll> scores) {
-        if (!lastTurn.hasKnockAllThePins()) {
-            return noBonus();
-        }
-
-        Roll lastRoll = scores.get(scores.size() - 1);
         if (lastTurn.isSpare()) {
-            return spareBonus(lastRoll);
+            return spareBonus(scores);
         }
-
-        Roll penultimateRoll = scores.get(scores.size() - 2);
-        return strikeBonus(lastRoll, penultimateRoll);
+        if (lastTurn.isStrike()) {
+            return strikeBonus(scores);
+        }
+        return noBonus();
     }
 
 
@@ -58,11 +54,20 @@ public class GameParser {
         return new Turn(new MissRoll());
     }
 
-    private Turn spareBonus(Roll lastRoll) {
+    private Turn spareBonus(ArrayList<Roll> scores) {
+        Roll lastRoll = getRollStartingByTheEnd(0, scores);
         return new Turn(lastRoll);
     }
 
-    private Turn strikeBonus(Roll lastRoll, Roll penultimateRoll) {
+    private Turn strikeBonus(ArrayList<Roll> scores) {
+        Roll lastRoll = getRollStartingByTheEnd(0, scores);
+        Roll penultimateRoll = getRollStartingByTheEnd(1, scores);
+
         return new Turn(penultimateRoll, lastRoll);
+    }
+
+    private Roll getRollStartingByTheEnd(int positionFromEnd, ArrayList<Roll> scores) {
+        int realPosition = scores.size() - (positionFromEnd + 1);
+        return scores.get(realPosition);
     }
 }
