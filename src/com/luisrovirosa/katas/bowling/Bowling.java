@@ -1,5 +1,8 @@
 package com.luisrovirosa.katas.bowling;
 
+import com.luisrovirosa.katas.bowling.line.Line;
+import com.luisrovirosa.katas.bowling.line.LineParser;
+import com.luisrovirosa.katas.bowling.line.LineScorer;
 import com.luisrovirosa.katas.bowling.roll.Roll;
 
 import java.util.ArrayList;

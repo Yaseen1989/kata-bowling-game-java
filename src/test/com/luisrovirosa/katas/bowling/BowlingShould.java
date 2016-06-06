@@ -2,7 +2,7 @@ package test.com.luisrovirosa.katas.bowling;
 
 import com.luisrovirosa.katas.bowling.Bowling;
 import com.luisrovirosa.katas.bowling.RollParser;
-import com.luisrovirosa.katas.bowling.LineParser;
+import com.luisrovirosa.katas.bowling.line.LineParser;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
