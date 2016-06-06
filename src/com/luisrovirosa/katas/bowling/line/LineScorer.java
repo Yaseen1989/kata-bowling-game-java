@@ -11,7 +11,7 @@ public class LineScorer {
 
     public int score() {
         int result = 0;
-        for (Frame frame : line.turns()) {
+        for (Frame frame : line.frames()) {
             result += turnScore(frame);
         }
         return result;

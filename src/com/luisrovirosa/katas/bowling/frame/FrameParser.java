@@ -1,23 +1,22 @@
-package com.luisrovirosa.katas.bowling.line;
+package com.luisrovirosa.katas.bowling.frame;
 
-import com.luisrovirosa.katas.bowling.frame.*;
 import com.luisrovirosa.katas.bowling.frame.bonus.BonusFrame;
 import com.luisrovirosa.katas.bowling.frame.bonus.NoBonusFrame;
 import com.luisrovirosa.katas.bowling.roll.Roll;
 
 import java.util.ArrayList;
 
-public class LineParser {
+public class FrameParser {
 
     private static final int NUMBER_OF_TURNS = 10;
 
-    public Line parse(ArrayList<Roll> rolls) {
-        ArrayList<Frame> frames = normalTurns(rolls);
-        BonusFrame bonusFrame = bonusTurn(lastTurn(frames), rolls);
-        return new Line(frames, bonusFrame);
+    public ArrayList<Frame> parse(ArrayList<Roll> rolls) {
+        ArrayList<Frame> frames = normalFrames(rolls);
+        frames.add(bonusFrame(lastTurn(frames), rolls));
+        return frames;
     }
 
-    private ArrayList<Frame> normalTurns(ArrayList<Roll> rolls) {
+    private ArrayList<Frame> normalFrames(ArrayList<Roll> rolls) {
         ArrayList<Frame> frames = new ArrayList<>();
         int numberOfRoll = 0;
         for (int i = 0; i < NUMBER_OF_TURNS; i++) {
@@ -28,7 +27,7 @@ public class LineParser {
         return frames;
     }
 
-    private BonusFrame bonusTurn(Frame lastFrame, ArrayList<Roll> rolls) {
+    private BonusFrame bonusFrame(Frame lastFrame, ArrayList<Roll> rolls) {
         if (lastFrame.isSpare()) {
             return spareBonus(rolls);
         }

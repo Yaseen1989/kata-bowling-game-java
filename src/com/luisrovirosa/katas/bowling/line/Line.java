@@ -1,27 +1,25 @@
 package com.luisrovirosa.katas.bowling.line;
 
-import com.luisrovirosa.katas.bowling.frame.bonus.BonusFrame;
 import com.luisrovirosa.katas.bowling.frame.Frame;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class Line {
-    private ArrayList<Frame> frames;
-    private Frame bonusFrame;
+    public static final int NUMBER_OF_TURNS = 10;
 
-    public Line(ArrayList<Frame> frames, BonusFrame bonusFrame) {
+    private ArrayList<Frame> frames;
+
+    public Line(ArrayList<Frame> frames) {
         this.frames = frames;
-        this.bonusFrame = bonusFrame;
     }
 
-    public Collection<Frame> turns() {
-        return frames;
+    public Collection<Frame> frames() {
+        return frames.subList(0, NUMBER_OF_TURNS);
     }
 
     public Frame next(Frame frame) {
         int numberOfTurn = frames.indexOf(frame);
-        boolean isLastTurn = numberOfTurn + 1 == frames.size();
-        return !isLastTurn ? frames.get(numberOfTurn + 1) : bonusFrame;
+        return frames.get(numberOfTurn + 1);
     }
 }
