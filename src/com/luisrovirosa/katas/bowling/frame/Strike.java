@@ -1,4 +1,4 @@
-package com.luisrovirosa.katas.bowling;
+package com.luisrovirosa.katas.bowling.frame;
 
 import com.luisrovirosa.katas.bowling.roll.Roll;
 

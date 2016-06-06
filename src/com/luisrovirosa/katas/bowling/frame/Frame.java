@@ -1,4 +1,4 @@
-package com.luisrovirosa.katas.bowling;
+package com.luisrovirosa.katas.bowling.frame;
 
 import com.luisrovirosa.katas.bowling.roll.MissRoll;
 import com.luisrovirosa.katas.bowling.roll.Roll;
@@ -8,7 +8,7 @@ public class Frame {
     private Roll firstRoll;
     private Roll secondRoll;
 
-    protected Frame(Roll roll) {
+    public Frame(Roll roll) {
         firstRoll = roll;
         secondRoll = new MissRoll();
     }

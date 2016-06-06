@@ -1,5 +1,8 @@
 package com.luisrovirosa.katas.bowling;
 
+import com.luisrovirosa.katas.bowling.frame.Frame;
+import com.luisrovirosa.katas.bowling.frame.Spare;
+import com.luisrovirosa.katas.bowling.frame.Strike;
 import com.luisrovirosa.katas.bowling.roll.MissRoll;
 import com.luisrovirosa.katas.bowling.roll.Roll;
 

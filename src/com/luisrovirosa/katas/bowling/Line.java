@@ -1,5 +1,7 @@
 package com.luisrovirosa.katas.bowling;
 
+import com.luisrovirosa.katas.bowling.frame.Frame;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
