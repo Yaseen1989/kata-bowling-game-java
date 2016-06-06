@@ -3,11 +3,11 @@ package com.luisrovirosa.katas.bowling;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Game {
+public class Line {
     private ArrayList<Turn> turns;
     private Turn bonusTurn;
 
-    public Game(ArrayList<Turn> turns, Turn bonusTurn) {
+    public Line(ArrayList<Turn> turns, Turn bonusTurn) {
         this.turns = turns;
         this.bonusTurn = bonusTurn;
     }

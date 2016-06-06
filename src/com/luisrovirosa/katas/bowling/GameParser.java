@@ -6,10 +6,10 @@ public class GameParser {
 
     private static final int NUMBER_OF_TURNS = 10;
 
-    public Game parse(ArrayList<Roll> scores) {
+    public Line parse(ArrayList<Roll> scores) {
         ArrayList<Turn> turns = normalTurns(scores);
         Turn bonusTurn = bonusTurn(lastTurn(turns), scores);
-        return new Game(turns, bonusTurn);
+        return new Line(turns, bonusTurn);
     }
 
     private ArrayList<Turn> normalTurns(ArrayList<Roll> scores) {

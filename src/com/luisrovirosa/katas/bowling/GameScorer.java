@@ -1,15 +1,15 @@
 package com.luisrovirosa.katas.bowling;
 
 public class GameScorer {
-    private Game game;
+    private Line line;
 
-    public GameScorer(Game game) {
-        this.game = game;
+    public GameScorer(Line line) {
+        this.line = line;
     }
 
     public int score() {
         int result = 0;
-        for (Turn turn : game.turns()) {
+        for (Turn turn : line.turns()) {
             result += turnScore(turn);
         }
         return result;
@@ -33,14 +33,14 @@ public class GameScorer {
     }
 
     private int spareBonus(Turn turn) {
-        Turn nextTurn = game.next(turn);
+        Turn nextTurn = line.next(turn);
         return nextTurn.numberOfPinsKnockedInFirstRoll();
     }
 
     private int strikeBonus(Turn turn) {
-        Turn nextTurn = game.next(turn);
+        Turn nextTurn = line.next(turn);
         if (nextTurn.isStrike()) {
-            return nextTurn.numberOfPinsKnockedInFirstRoll() + game.next(nextTurn).numberOfPinsKnockedInFirstRoll();
+            return nextTurn.numberOfPinsKnockedInFirstRoll() + line.next(nextTurn).numberOfPinsKnockedInFirstRoll();
         }
         return nextTurn.numberOfKnockedPins();
     }
