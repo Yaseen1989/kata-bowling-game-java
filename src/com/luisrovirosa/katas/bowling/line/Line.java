@@ -1,5 +1,6 @@
 package com.luisrovirosa.katas.bowling.line;
 
+import com.luisrovirosa.katas.bowling.frame.bonus.BonusFrame;
 import com.luisrovirosa.katas.bowling.frame.Frame;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class Line {
     private ArrayList<Frame> frames;
     private Frame bonusFrame;
 
-    public Line(ArrayList<Frame> frames, Frame bonusFrame) {
+    public Line(ArrayList<Frame> frames, BonusFrame bonusFrame) {
         this.frames = frames;
         this.bonusFrame = bonusFrame;
     }

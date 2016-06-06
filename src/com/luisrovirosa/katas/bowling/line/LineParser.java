@@ -1,9 +1,8 @@
 package com.luisrovirosa.katas.bowling.line;
 
-import com.luisrovirosa.katas.bowling.frame.Frame;
-import com.luisrovirosa.katas.bowling.frame.Spare;
-import com.luisrovirosa.katas.bowling.frame.Strike;
-import com.luisrovirosa.katas.bowling.roll.MissRoll;
+import com.luisrovirosa.katas.bowling.frame.*;
+import com.luisrovirosa.katas.bowling.frame.bonus.BonusFrame;
+import com.luisrovirosa.katas.bowling.frame.bonus.NoBonusFrame;
 import com.luisrovirosa.katas.bowling.roll.Roll;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class LineParser {
 
     public Line parse(ArrayList<Roll> rolls) {
         ArrayList<Frame> frames = normalTurns(rolls);
-        Frame bonusFrame = bonusTurn(lastTurn(frames), rolls);
+        BonusFrame bonusFrame = bonusTurn(lastTurn(frames), rolls);
         return new Line(frames, bonusFrame);
     }
 
@@ -29,7 +28,7 @@ public class LineParser {
         return frames;
     }
 
-    private Frame bonusTurn(Frame lastFrame, ArrayList<Roll> rolls) {
+    private BonusFrame bonusTurn(Frame lastFrame, ArrayList<Roll> rolls) {
         if (lastFrame.isSpare()) {
             return spareBonus(rolls);
         }
@@ -56,20 +55,20 @@ public class LineParser {
         return frames.get(frames.size() - 1);
     }
 
-    private Frame noBonus() {
-        return new Frame(new MissRoll());
+    private NoBonusFrame noBonus() {
+        return new NoBonusFrame();
     }
 
-    private Frame spareBonus(ArrayList<Roll> rolls) {
+    private BonusFrame spareBonus(ArrayList<Roll> rolls) {
         Roll lastRoll = getRollStartingByTheEnd(0, rolls);
-        return new Frame(lastRoll);
+        return new BonusFrame(lastRoll);
     }
 
-    private Frame strikeBonus(ArrayList<Roll> rolls) {
+    private BonusFrame strikeBonus(ArrayList<Roll> rolls) {
         Roll lastRoll = getRollStartingByTheEnd(0, rolls);
         Roll penultimateRoll = getRollStartingByTheEnd(1, rolls);
 
-        return new Frame(penultimateRoll, lastRoll);
+        return new BonusFrame(penultimateRoll, lastRoll);
     }
 
     private Roll getRollStartingByTheEnd(int positionFromEnd, ArrayList<Roll> rolls) {
