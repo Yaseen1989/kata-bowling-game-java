@@ -5,6 +5,7 @@ import com.luisrovirosa.katas.bowling.line.Line;
 import com.luisrovirosa.katas.bowling.frame.FrameParser;
 import com.luisrovirosa.katas.bowling.line.LineScorer;
 import com.luisrovirosa.katas.bowling.roll.Roll;
+import com.luisrovirosa.katas.bowling.roll.RollParser;
 
 import java.util.ArrayList;
 

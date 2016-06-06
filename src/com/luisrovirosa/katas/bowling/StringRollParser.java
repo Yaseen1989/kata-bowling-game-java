@@ -1,14 +1,17 @@
 package com.luisrovirosa.katas.bowling;
 
 import com.luisrovirosa.katas.bowling.roll.Roll;
+import com.luisrovirosa.katas.bowling.roll.RollParser;
 
 import java.util.ArrayList;
 
-public class RollParser {
-    public ArrayList<Roll> parse(String rolls) {
+public class StringRollParser implements RollParser {
+    @Override
+    public ArrayList<Roll> parse(Object rolls) {
+        String parsedRolls = (String) rolls;
         ArrayList<Roll> result = new ArrayList<>();
-        for (int i = 0; i < rolls.length(); i++) {
-            result.add(createRoll(rolls, i));
+        for (int i = 0; i < parsedRolls.length(); i++) {
+            result.add(createRoll(parsedRolls, i));
         }
         return result;
     }
