@@ -20,14 +20,16 @@ public class RollParser {
     }
 
     private int scoreOf(String rolls, int numberOfRoll) {
-        String score = rolls.substring(numberOfRoll, numberOfRoll + 1);
-        if (score.equals("-")) {
-            score = "0";
-        } else if (score.equals("/")) {
-            score = String.valueOf(10 - scoreOf(rolls, numberOfRoll - 1));
-        } else if (score.equals("X")) {
-            score = "10";
+        char score = rolls.charAt(numberOfRoll);
+        if (score == '-') {
+            return 0;
         }
-        return Integer.parseInt(score);
+        if (score == '/') {
+            return 10 - scoreOf(rolls, numberOfRoll - 1);
+        }
+        if (score == 'X') {
+            return 10;
+        }
+        return Character.getNumericValue(score);
     }
 }
