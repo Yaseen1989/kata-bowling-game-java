@@ -2,7 +2,7 @@ package com.luisrovirosa.katas.bowling;
 
 import java.util.ArrayList;
 
-public class GameParser {
+public class LineParser {
 
     private static final int NUMBER_OF_TURNS = 10;
 
