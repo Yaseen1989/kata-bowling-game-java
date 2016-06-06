@@ -7,34 +7,34 @@ public class LineParser {
     private static final int NUMBER_OF_TURNS = 10;
 
     public Line parse(ArrayList<Roll> scores) {
-        ArrayList<Turn> turns = normalTurns(scores);
-        Turn bonusTurn = bonusTurn(lastTurn(turns), scores);
-        return new Line(turns, bonusTurn);
+        ArrayList<Frame> frames = normalTurns(scores);
+        Frame bonusFrame = bonusTurn(lastTurn(frames), scores);
+        return new Line(frames, bonusFrame);
     }
 
-    private ArrayList<Turn> normalTurns(ArrayList<Roll> scores) {
-        ArrayList<Turn> turns = new ArrayList<>();
+    private ArrayList<Frame> normalTurns(ArrayList<Roll> scores) {
+        ArrayList<Frame> frames = new ArrayList<>();
         int numberOfRoll = 0;
         for (int i = 0; i < NUMBER_OF_TURNS; i++) {
-            Turn turn = getTurn(numberOfRoll, scores);
-            turns.add(turn);
-            numberOfRoll += turn.isStrike() ? 1 : 2;
+            Frame frame = getTurn(numberOfRoll, scores);
+            frames.add(frame);
+            numberOfRoll += frame.isStrike() ? 1 : 2;
         }
-        return turns;
+        return frames;
     }
 
-    private Turn bonusTurn(Turn lastTurn, ArrayList<Roll> scores) {
-        if (lastTurn.isSpare()) {
+    private Frame bonusTurn(Frame lastFrame, ArrayList<Roll> scores) {
+        if (lastFrame.isSpare()) {
             return spareBonus(scores);
         }
-        if (lastTurn.isStrike()) {
+        if (lastFrame.isStrike()) {
             return strikeBonus(scores);
         }
         return noBonus();
     }
 
 
-    private Turn getTurn(int startingRoll, ArrayList<Roll> scores) {
+    private Frame getTurn(int startingRoll, ArrayList<Roll> scores) {
         Roll firstRoll = scores.get(startingRoll);
         if (firstRoll.numberOfKnockedPins() == 10) {
             return new Strike(firstRoll);
@@ -43,27 +43,27 @@ public class LineParser {
         if (firstRoll.numberOfKnockedPins() + secondRoll.numberOfKnockedPins() == 10) {
             return new Spare(firstRoll, secondRoll);
         }
-        return new Turn(firstRoll, secondRoll);
+        return new Frame(firstRoll, secondRoll);
     }
 
-    private Turn lastTurn(ArrayList<Turn> turns) {
-        return turns.get(turns.size() - 1);
+    private Frame lastTurn(ArrayList<Frame> frames) {
+        return frames.get(frames.size() - 1);
     }
 
-    private Turn noBonus() {
-        return new Turn(new MissRoll());
+    private Frame noBonus() {
+        return new Frame(new MissRoll());
     }
 
-    private Turn spareBonus(ArrayList<Roll> scores) {
+    private Frame spareBonus(ArrayList<Roll> scores) {
         Roll lastRoll = getRollStartingByTheEnd(0, scores);
-        return new Turn(lastRoll);
+        return new Frame(lastRoll);
     }
 
-    private Turn strikeBonus(ArrayList<Roll> scores) {
+    private Frame strikeBonus(ArrayList<Roll> scores) {
         Roll lastRoll = getRollStartingByTheEnd(0, scores);
         Roll penultimateRoll = getRollStartingByTheEnd(1, scores);
 
-        return new Turn(penultimateRoll, lastRoll);
+        return new Frame(penultimateRoll, lastRoll);
     }
 
     private Roll getRollStartingByTheEnd(int positionFromEnd, ArrayList<Roll> scores) {

@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Line {
-    private ArrayList<Turn> turns;
-    private Turn bonusTurn;
+    private ArrayList<Frame> frames;
+    private Frame bonusFrame;
 
-    public Line(ArrayList<Turn> turns, Turn bonusTurn) {
-        this.turns = turns;
-        this.bonusTurn = bonusTurn;
+    public Line(ArrayList<Frame> frames, Frame bonusFrame) {
+        this.frames = frames;
+        this.bonusFrame = bonusFrame;
     }
 
-    public Collection<Turn> turns() {
-        return turns;
+    public Collection<Frame> turns() {
+        return frames;
     }
 
-    public Turn next(Turn turn) {
-        int numberOfTurn = turns.indexOf(turn);
-        boolean isLastTurn = numberOfTurn + 1 == turns.size();
-        return !isLastTurn ? turns.get(numberOfTurn + 1) : bonusTurn;
+    public Frame next(Frame frame) {
+        int numberOfTurn = frames.indexOf(frame);
+        boolean isLastTurn = numberOfTurn + 1 == frames.size();
+        return !isLastTurn ? frames.get(numberOfTurn + 1) : bonusFrame;
     }
 }

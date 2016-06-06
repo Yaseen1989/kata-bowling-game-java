@@ -1,16 +1,16 @@
 package com.luisrovirosa.katas.bowling;
 
-public class Turn {
+public class Frame {
     private static final int NUMBER_OF_PINS = 10;
     private Roll firstRoll;
     private Roll secondRoll;
 
-    protected Turn(Roll roll) {
+    protected Frame(Roll roll) {
         firstRoll = roll;
         secondRoll = new MissRoll();
     }
 
-    public Turn(Roll firstRoll, Roll secondRoll) {
+    public Frame(Roll firstRoll, Roll secondRoll) {
         this.firstRoll = firstRoll;
         this.secondRoll = secondRoll;
     }

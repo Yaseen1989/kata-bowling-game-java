@@ -9,40 +9,40 @@ public class LineScorer {
 
     public int score() {
         int result = 0;
-        for (Turn turn : line.turns()) {
-            result += turnScore(turn);
+        for (Frame frame : line.turns()) {
+            result += turnScore(frame);
         }
         return result;
 
     }
 
-    private int turnScore(Turn turn) {
-        return turn.numberOfKnockedPins() + bonusScore(turn);
+    private int turnScore(Frame frame) {
+        return frame.numberOfKnockedPins() + bonusScore(frame);
     }
 
-    private int bonusScore(Turn turn) {
-        if (turn.isSpare()) {
-            return spareBonus(turn);
+    private int bonusScore(Frame frame) {
+        if (frame.isSpare()) {
+            return spareBonus(frame);
         }
 
-        if (turn.isStrike()) {
-            return strikeBonus(turn);
+        if (frame.isStrike()) {
+            return strikeBonus(frame);
         }
 
         return 0;
     }
 
-    private int spareBonus(Turn turn) {
-        Turn nextTurn = line.next(turn);
-        return nextTurn.numberOfPinsKnockedInFirstRoll();
+    private int spareBonus(Frame frame) {
+        Frame nextFrame = line.next(frame);
+        return nextFrame.numberOfPinsKnockedInFirstRoll();
     }
 
-    private int strikeBonus(Turn turn) {
-        Turn nextTurn = line.next(turn);
-        if (nextTurn.isStrike()) {
-            return nextTurn.numberOfPinsKnockedInFirstRoll() + line.next(nextTurn).numberOfPinsKnockedInFirstRoll();
+    private int strikeBonus(Frame frame) {
+        Frame nextFrame = line.next(frame);
+        if (nextFrame.isStrike()) {
+            return nextFrame.numberOfPinsKnockedInFirstRoll() + line.next(nextFrame).numberOfPinsKnockedInFirstRoll();
         }
-        return nextTurn.numberOfKnockedPins();
+        return nextFrame.numberOfKnockedPins();
     }
 
 }
