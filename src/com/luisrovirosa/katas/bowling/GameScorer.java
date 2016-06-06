@@ -25,15 +25,15 @@ public class GameScorer {
             return 0;
         }
 
-        Turn next = game.next(turn);
+        Turn nextTurn = game.next(turn);
         if (turn.isSpare()) {
-            return next.numberOfPinsKnockedInFirstRoll();
+            return nextTurn.numberOfPinsKnockedInFirstRoll();
         }
 
-        if (next.isStrike()) {
-            return next.numberOfKnockedPins() + game.next(next).numberOfPinsKnockedInFirstRoll();
+        if (nextTurn.isStrike()) {
+            return nextTurn.numberOfKnockedPins() + game.next(nextTurn).numberOfPinsKnockedInFirstRoll();
         } else {
-            return next.numberOfKnockedPins();
+            return nextTurn.numberOfKnockedPins();
         }
     }
 
