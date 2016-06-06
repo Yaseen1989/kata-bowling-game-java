@@ -3,7 +3,6 @@ package com.luisrovirosa.katas.bowling.frame;
 import com.luisrovirosa.katas.bowling.roll.Roll;
 
 public class Frame {
-    private static final int NUMBER_OF_PINS = 10;
     private Roll firstRoll;
     private Roll secondRoll;
 
@@ -36,7 +35,4 @@ public class Frame {
         return false;
     }
 
-    public boolean hasKnockAllThePins() {
-        return numberOfKnockedPins() == NUMBER_OF_PINS;
-    }
 }
