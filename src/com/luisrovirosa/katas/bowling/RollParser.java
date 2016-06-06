@@ -1,7 +1,5 @@
 package com.luisrovirosa.katas.bowling;
 
-import com.luisrovirosa.katas.bowling.roll.MissRoll;
-import com.luisrovirosa.katas.bowling.roll.NormalRoll;
 import com.luisrovirosa.katas.bowling.roll.Roll;
 
 import java.util.ArrayList;
@@ -17,10 +15,7 @@ public class RollParser {
 
     private Roll createRoll(String rolls, int i) {
         int score = scoreOf(i, rolls);
-        if (score == 0) {
-            return new MissRoll();
-        }
-        return new NormalRoll(score);
+        return new Roll(score);
     }
 
     private int scoreOf(int numberOfRoll, String rolls) {
