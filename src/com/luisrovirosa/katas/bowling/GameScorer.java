@@ -21,20 +21,28 @@ public class GameScorer {
     }
 
     private int bonusScore(Turn turn) {
-        if (!turn.hasKnockAllThePins()) {
-            return 0;
-        }
-
-        Turn nextTurn = game.next(turn);
         if (turn.isSpare()) {
-            return nextTurn.numberOfPinsKnockedInFirstRoll();
+            return spareBonus(turn);
         }
 
-        if (nextTurn.isStrike()) {
-            return nextTurn.numberOfKnockedPins() + game.next(nextTurn).numberOfPinsKnockedInFirstRoll();
-        } else {
-            return nextTurn.numberOfKnockedPins();
+        if (turn.isStrike()) {
+            return strikeBonus(turn);
         }
+
+        return 0;
+    }
+
+    private int spareBonus(Turn turn) {
+        Turn nextTurn = game.next(turn);
+        return nextTurn.numberOfPinsKnockedInFirstRoll();
+    }
+
+    private int strikeBonus(Turn turn) {
+        Turn nextTurn = game.next(turn);
+        if (nextTurn.isStrike()) {
+            return nextTurn.numberOfPinsKnockedInFirstRoll() + game.next(nextTurn).numberOfPinsKnockedInFirstRoll();
+        }
+        return nextTurn.numberOfKnockedPins();
     }
 
 }
