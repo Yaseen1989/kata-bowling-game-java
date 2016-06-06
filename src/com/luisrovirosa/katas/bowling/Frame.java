@@ -1,5 +1,8 @@
 package com.luisrovirosa.katas.bowling;
 
+import com.luisrovirosa.katas.bowling.roll.MissRoll;
+import com.luisrovirosa.katas.bowling.roll.Roll;
+
 public class Frame {
     private static final int NUMBER_OF_PINS = 10;
     private Roll firstRoll;

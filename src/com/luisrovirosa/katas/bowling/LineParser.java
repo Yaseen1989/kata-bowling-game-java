@@ -1,5 +1,8 @@
 package com.luisrovirosa.katas.bowling;
 
+import com.luisrovirosa.katas.bowling.roll.MissRoll;
+import com.luisrovirosa.katas.bowling.roll.Roll;
+
 import java.util.ArrayList;
 
 public class LineParser {

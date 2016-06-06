@@ -1,4 +1,4 @@
-package com.luisrovirosa.katas.bowling;
+package com.luisrovirosa.katas.bowling.roll;
 
 public class NormalRoll implements Roll {
     private int numberOfKnockedPins;

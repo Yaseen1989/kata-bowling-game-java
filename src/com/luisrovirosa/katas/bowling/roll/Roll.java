@@ -1,4 +1,4 @@
-package com.luisrovirosa.katas.bowling;
+package com.luisrovirosa.katas.bowling.roll;
 
 public interface Roll {
     int numberOfKnockedPins();
