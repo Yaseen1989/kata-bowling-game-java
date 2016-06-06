@@ -1,9 +1,9 @@
 package com.luisrovirosa.katas.bowling;
 
-public class GameScorer {
+public class LineScorer {
     private Line line;
 
-    public GameScorer(Line line) {
+    public LineScorer(Line line) {
         this.line = line;
     }
 
