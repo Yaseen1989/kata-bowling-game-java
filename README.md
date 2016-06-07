@@ -41,6 +41,10 @@ The main goal is practice object oriented design via refactoring.
 	- Meaning: 10 strikes + 2 strikes for the extra bonus (12 rolls)
 	- Score: 300 (10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10)
 
+# Code repository
+- Branch without_refactoring: The kata solved in one class
+- Branch master: The final solution
+
 # My solution
 - **Bowling**: It's the glue to process all the steps.
 - **StringRollParser**: Parser the string input into Roll objects.
@@ -68,4 +72,4 @@ The main goal is practice object oriented design via refactoring.
 	- No classes with more than two instance variables
 	- No getters/setters/properties
 4. Dividing in packages and reduce coupling between them.
- 	
+
